@@ -1,21 +1,34 @@
-const { getRandomNumber } = require('./asynchronous/promises');
+// // 'data' event
+// process.stdin.on('data', (data) => {
+//   // // afficher le buffer
+//   // console.log(data);
 
-console.log('avant getRandomNumber()');
-// **** passage de deux arguments : un nombre et un callback
-getRandomNumber(5, (err, result) => {
-  if (err) {
-    console.log(`erreur : ${err.message}`);
-    throw err;
-  }
-  console.log(`résultat : ${result}`);
+//   // convertir le buffer en chaine
+//   console.log(data.toString());
+// });
+
+// // 'end' event
+// process.stdin.on('end', (data) => {
+//   console.log('end : ', data);
+// });
+
+// **** custome events
+const customer = require('./events/Customer')('fpitiot@gmail.com');
+const cart = require('./events/Cart')(customer);
+
+customer.on('customer_created', (newCustomer) => {
+  console.log('nouveau client créé : %j', newCustomer);
 });
-console.log('après getRandomNumber()');
-// **** passage de deux arguments : un nombre et un callback (end)
 
-console.log('avant getRandomNumber()');
-// **** passage d'un seul argument : le nombre seul
-getRandomNumber(5)
-  .then(data => console.log(`résultat : ${data}`))
-  .catch(error => console.log(`erreur : ${error.message}`));
-console.log('après getRandomNumber()');
-// **** passage d'un seul argument : le nombre seul (end)
+cart.on('article_added', (id) => {
+  console.log(`article ${id} ajouté`);
+});
+cart.on('show_cart', (data) => {
+  console.log(`caddie : %j`, data);
+});
+
+cart.addArticle({ name: 'épée', quantity: 1 });
+cart.addArticle({ name: 'DVD Kaamelott', quantity: 4 });
+cart.addArticle({ name: 'catapulte', quantity: 2 });
+cart.show();
+// **** custome events (end)
