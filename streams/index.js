@@ -212,39 +212,49 @@
 //   console.log(`==== ${pageUrl} end  ======\n\n`);
 // }
 
-// ** avec streams
-const http = require('http');
+// // ** avec streams
+// const http = require('http');
+// const { createReadStream } = require('fs');
+// const videoPath = './videos/ionicdevappdemo.mp4';
+// const server = http.createServer();
+
+// server.on('request', (req, res) => {
+//   if (req.url === '/favicon.ico') return;
+//   if (req.url === '/contact') {
+//     memoryUsageInMegaBytes(`route "${req.url}"`);
+//     res.end('contactez-nous');
+//   } else if (req.url === '/videos') {
+//     const myReadStream = createReadStream(videoPath);
+//     memoryUsageInMegaBytes(`route "${req.url}" (avant le pipe)`);
+//     res.writeHead(200, { 'Content-Type': 'video/mp4' });
+//     myReadStream.pipe(res);
+//     memoryUsageInMegaBytes(`route "${req.url}" (après le pipe)`);
+//   } else {
+//     memoryUsageInMegaBytes(`route "${req.url}" (dans le else)`);
+//     res.end(`sur la page ${req.url}`);
+//   }
+// });
+
+// const port = 3000;
+// server.listen(port, () => {
+//   console.log(`serveur sur port ${port}`);
+// });
+
+// function memoryUsageInMegaBytes (pageUrl) {
+//   const used = process.memoryUsage();
+//   console.log(`==== ${pageUrl} start =======`);
+//   for (let key in used) {
+//     console.log(`${key} ${Math.round(used[key] / 1024 / 1024 * 100) / 100} Mo`);
+//   }
+//   console.log(`==== ${pageUrl} end  ======\n\n`);
+// }
+
+// ** create hash from stdin
+const crypto = require('crypto');
+const hasher = crypto.createHash('sha512', { encoding: 'hex' });
+process.stdin.pipe(hasher).pipe(process.stdout);
+
+// ** create hash from readable based on file
 const { createReadStream } = require('fs');
-const videoPath = './videos/ionicdevappdemo.mp4';
-const server = http.createServer();
-
-server.on('request', (req, res) => {
-  if (req.url === '/favicon.ico') return;
-  if (req.url === '/contact') {
-    memoryUsageInMegaBytes(`route "${req.url}"`);
-    res.end('contactez-nous');
-  } else if (req.url === '/videos') {
-    const myReadStream = createReadStream(videoPath);
-    memoryUsageInMegaBytes(`route "${req.url}" (avant le pipe)`);
-    res.writeHead(200, { 'Content-Type': 'video/mp4' });
-    myReadStream.pipe(res);
-    memoryUsageInMegaBytes(`route "${req.url}" (après le pipe)`);
-  } else {
-    memoryUsageInMegaBytes(`route "${req.url}" (dans le else)`);
-    res.end(`sur la page ${req.url}`);
-  }
-});
-
-const port = 3000;
-server.listen(port, () => {
-  console.log(`serveur sur port ${port}`);
-});
-
-function memoryUsageInMegaBytes (pageUrl) {
-  const used = process.memoryUsage();
-  console.log(`==== ${pageUrl} start =======`);
-  for (let key in used) {
-    console.log(`${key} ${Math.round(used[key] / 1024 / 1024 * 100) / 100} Mo`);
-  }
-  console.log(`==== ${pageUrl} end  ======\n\n`);
-}
+const myReadable = createReadStream('./blagues.txt');
+myReadable.pipe(hasher).pipe(process.stdout);
