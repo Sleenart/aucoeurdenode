@@ -1,4 +1,4 @@
-//** using pipe()
+//* * using pipe()
 // const createReadStream = require('fs').createReadStream;
 
 // const readable = createReadStream('./fruits.txt');
@@ -20,10 +20,10 @@
 // const { createReadStream, createWriteStream } = require('fs');
 
 // const readStream = createReadStream('./fruits.txt');
-// const writeStream = createWriteStream('./fruits_copy.txt');   
+// const writeStream = createWriteStream('./fruits_copy.txt');
 
 // readStream.on('data', (chunk) => {
-// 	writeStream.write(chunk);                          
+// 	writeStream.write(chunk);
 // });
 
 // readStream.on('error', (error) => {
@@ -62,7 +62,7 @@
 // sur plusieurs lignes
 // déjà la fin
 // `;
-// class StreamText extends Readable {  
+// class StreamText extends Readable {
 //   constructor(text) {
 //     super();
 //     this.text = text;
@@ -74,7 +74,7 @@
 //       this.push(data);
 //     });
 //     this.push(null);
-//   }  
+//   }
 // }
 // const streamText = new StreamText(text);
 // // streamText.on('data', (chunk) => console.log(chunk.toString()));
@@ -127,13 +127,13 @@
 
 // // ** duplex
 // var net = require('net')
-// // for every TCP connexion that's incoming, net.createServer() returns a duplex stream 
+// // for every TCP connexion that's incoming, net.createServer() returns a duplex stream
 // net.createServer(function (stream) {
 // 	// you can pipe a duplex stream into itself without creating an infinite loop
 // 	stream.pipe(stream)
 // }).listen(5000)
 
-// // usage 
+// // usage
 // node index.js
 // // on another terminal
 // nc localhost 5000
@@ -141,32 +141,110 @@
 // // reponse
 // hello
 
-// ** custom class inheriting from Readable and streaming objects
-const { Readable } = require('stream');
+// // ** custom class inheriting from Readable and streaming objects
+// const { Readable } = require('stream');
 
-const text = `Gros test
-sur plusieurs lignes
-déjà la fin
-`;
-class StreamText extends Readable {
-  constructor (text) {
-    // super();
-    super({ objectMode: true }); // here
-    this.text = text;
-    this.sentences = text.split('\n');
-  }
+// const text = `Gros test
+// sur plusieurs lignes
+// déjà la fin
+// `;
+// class StreamText extends Readable {
+//   constructor (text) {
+//     // super();
+//     super({ objectMode: true }); // here
+//     this.text = text;
+//     this.sentences = text.split('\n');
+//   }
 
-  _read () {
-    this.sentences.map(data => {
-      const obj = {
-        data: data,
-        length: data.length
-      };
-      this.push(obj);
-    });
-    this.push(null);
+//   _read () {
+//     this.sentences.map(data => {
+//       const obj = {
+//         data: data,
+//         length: data.length
+//       };
+//       this.push(obj);
+//     });
+//     this.push(null);
+//   }
+// }
+// const streamText = new StreamText(text);
+// streamText.on('data', (chunk) => console.log(JSON.stringify(chunk)));
+// streamText.on('end', () => console.log('lecture terminée'));
+
+// // ** without streams
+// const fs = require('fs');
+// const http = require('http');
+// const videoPath = './videos/ionicdevappdemo.mp4';
+// const server = http.createServer();
+
+// server.on('request', (req, res) => {
+//   if (req.url === '/favicon.ico') return;
+//   if (req.url === '/contact') {
+//     memoryUsageInMegaBytes(`route "${req.url}"`);
+//     res.end('contactez-nous');
+//   } else if (req.url === '/videos') {
+//     memoryUsageInMegaBytes(`route "${req.url}" (avant le cb de fs.readFile)`);
+//     fs.readFile(videoPath, (error, data) => {
+//       memoryUsageInMegaBytes(`route "${req.url}" (dans le cb de fs.readFile)`);
+//       if (error) {
+//         console.error('échec de lecture', error.message);
+//       }
+//       res.writeHead(200, { 'Content-Type': 'video/mp4' });
+//       res.end(data);
+//     });
+//   } else {
+//     memoryUsageInMegaBytes(`route "${req.url}" (dans le else)`);
+//     res.end(`sur la page ${req.url}`);
+//   }
+// });
+
+// const port = 3000;
+// server.listen(port, () => {
+//   console.log(`serveur sur port ${port}`);
+// });
+
+// function memoryUsageInMegaBytes (pageUrl) {
+//   const used = process.memoryUsage();
+//   console.log(`==== ${pageUrl} start =======`);
+//   for (let key in used) {
+//     console.log(`${key} ${Math.round(used[key] / 1024 / 1024 * 100) / 100} Mo`);
+//   }
+//   console.log(`==== ${pageUrl} end  ======\n\n`);
+// }
+
+// ** avec streams
+const http = require('http');
+const { createReadStream } = require('fs');
+const videoPath = './videos/ionicdevappdemo.mp4';
+const server = http.createServer();
+
+server.on('request', (req, res) => {
+  if (req.url === '/favicon.ico') return;
+  if (req.url === '/contact') {
+    memoryUsageInMegaBytes(`route "${req.url}"`);
+    res.end('contactez-nous');
+  } else if (req.url === '/videos') {
+    const myReadStream = createReadStream(videoPath);
+    memoryUsageInMegaBytes(`route "${req.url}" (avant le pipe)`);
+    res.writeHead(200, { 'Content-Type': 'video/mp4' });
+    myReadStream.pipe(res);
+    memoryUsageInMegaBytes(`route "${req.url}" (après le pipe)`);
+  } else {
+    memoryUsageInMegaBytes(`route "${req.url}" (dans le else)`);
+    res.end(`sur la page ${req.url}`);
   }
+});
+
+const port = 3000;
+server.listen(port, () => {
+  console.log(`serveur sur port ${port}`);
+});
+
+function memoryUsageInMegaBytes (pageUrl) {
+  const used = process.memoryUsage();
+  console.log(`==== ${pageUrl} start =======`);
+  for (let key in used) {
+    console.log(`${key} ${Math.round(used[key] / 1024 / 1024 * 100) / 100} Mo`);
+  }
+  console.log(`==== ${pageUrl} end  ======\n\n`);
 }
-const streamText = new StreamText(text);
-streamText.on('data', (chunk) => console.log(JSON.stringify(chunk)));
-streamText.on('end', () => console.log('lecture terminée'));

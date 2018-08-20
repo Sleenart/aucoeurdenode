@@ -1,0 +1,83 @@
+
+sam@DESKTOP-DJHMAHP:/mnt/f/sandbox/auCoeurDeNode/streams$ node index.js
+serveur sur port 3000
+==== route "/contact" start =======
+rss 17.44 Mo
+heapTotal 7.83 Mo
+heapUsed 4.87 Mo
+external 0.01 Mo
+==== route "/contact" end  ======
+
+
+==== route "/videos" (avant le pipe) start =======
+rss 17.84 Mo
+heapTotal 7.83 Mo
+heapUsed 5.22 Mo
+external 0.01 Mo
+==== route "/videos" (avant le pipe) end  ======
+
+
+==== route "/videos" (après le pipe) start =======
+rss 17.88 Mo
+heapTotal 7.83 Mo
+heapUsed 5.25 Mo
+external 0.01 Mo
+==== route "/videos" (après le pipe) end  ======
+
+
+==== route "/videos" (avant le pipe) start =======
+rss 19.15 Mo
+heapTotal 7.83 Mo
+heapUsed 5.42 Mo
+external 1.45 Mo
+==== route "/videos" (avant le pipe) end  ======
+
+
+==== route "/videos" (après le pipe) start =======
+rss 19.15 Mo
+heapTotal 7.83 Mo
+heapUsed 5.43 Mo
+external 1.45 Mo
+==== route "/videos" (après le pipe) end  ======
+
+
+==== route "/contact" start =======
+rss 30.85 Mo
+heapTotal 7.83 Mo
+heapUsed 5.74 Mo
+external 7.7 Mo
+==== route "/contact" end  ======
+
+
+==== route "/videos" (avant le pipe) start =======
+rss 30.91 Mo
+heapTotal 7.83 Mo
+heapUsed 5.78 Mo
+external 7.7 Mo
+==== route "/videos" (avant le pipe) end  ======
+
+
+==== route "/videos" (après le pipe) start =======
+rss 30.92 Mo
+heapTotal 7.83 Mo
+heapUsed 5.79 Mo
+external 7.7 Mo
+==== route "/videos" (après le pipe) end  ======
+
+
+==== route "/videos" (avant le pipe) start =======
+rss 31.04 Mo
+heapTotal 7.83 Mo
+heapUsed 5.91 Mo
+external 9.2 Mo
+==== route "/videos" (avant le pipe) end  ======
+
+
+==== route "/videos" (après le pipe) start =======
+rss 31.05 Mo
+heapTotal 7.83 Mo
+heapUsed 5.92 Mo
+external 9.2 Mo
+==== route "/videos" (après le pipe) end  ======
+
+

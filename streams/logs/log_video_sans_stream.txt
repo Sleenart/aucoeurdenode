@@ -1,0 +1,88 @@
+sam@DESKTOP-DJHMAHP:/mnt/f/sandbox/auCoeurDeNode/streams$ node index.js
+serveur sur port 3000
+==== route "/contact" start =======
+rss 18.34 Mo
+heapTotal 7.83 Mo
+heapUsed 5.28 Mo
+external 0.02 Mo
+==== route "/contact" end  ======
+
+
+==== route "/videos" (avant le cb de fs.readFile) start =======
+rss 18.85 Mo
+heapTotal 10.83 Mo
+heapUsed 5.22 Mo
+external 0.01 Mo
+==== route "/videos" (avant le cb de fs.readFile) end  ======
+
+
+==== route "/videos" (dans le cb de fs.readFile) start =======
+rss 185 Mo
+heapTotal 8.33 Mo
+heapUsed 4.87 Mo
+external 165.88 Mo
+==== route "/videos" (dans le cb de fs.readFile) end  ======
+
+
+==== route "/videos" (avant le cb de fs.readFile) start =======
+rss 184.52 Mo
+heapTotal 8.33 Mo
+heapUsed 4.95 Mo
+external 165.88 Mo
+==== route "/videos" (avant le cb de fs.readFile) end  ======
+
+
+==== route "/videos" (dans le cb de fs.readFile) start =======
+rss 184.61 Mo
+heapTotal 8.33 Mo
+heapUsed 4.89 Mo
+external 331.75 Mo
+==== route "/videos" (dans le cb de fs.readFile) end  ======
+
+
+==== route "/contact" start =======
+rss 183.6 Mo
+heapTotal 8.33 Mo
+heapUsed 4.94 Mo
+external 331.75 Mo
+==== route "/contact" end  ======
+
+
+==== route "/videos" (avant le cb de fs.readFile) start =======
+rss 183.64 Mo
+heapTotal 8.33 Mo
+heapUsed 4.97 Mo
+external 331.75 Mo
+==== route "/videos" (avant le cb de fs.readFile) end  ======
+
+
+==== route "/videos" (dans le cb de fs.readFile) start =======
+rss 183.69 Mo
+heapTotal 8.33 Mo
+heapUsed 4.9 Mo
+external 331.75 Mo
+==== route "/videos" (dans le cb de fs.readFile) end  ======
+
+
+==== route "/videos" (avant le cb de fs.readFile) start =======
+rss 183.61 Mo
+heapTotal 8.33 Mo
+heapUsed 4.94 Mo
+external 331.75 Mo
+==== route "/videos" (avant le cb de fs.readFile) end  ======
+
+
+==== route "/videos" (dans le cb de fs.readFile) start =======
+rss 183.66 Mo
+heapTotal 8.33 Mo
+heapUsed 4.86 Mo
+external 331.75 Mo
+==== route "/videos" (dans le cb de fs.readFile) end  ======
+
+
+==== route "/contact" start =======
+rss 183.6 Mo
+heapTotal 8.33 Mo
+heapUsed 4.89 Mo
+external 331.75 Mo
+==== route "/contact" end  ======
