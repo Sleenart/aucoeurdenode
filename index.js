@@ -1,3 +1,14 @@
+// eslint-disable-next-line no-unused-vars
+import synchronous from "./asynchronous/synchronous";
+import { getRandomNumber } from "./asynchronous/asynchronous_1";
+
+getRandomNumber(10, (err, res) => {
+	if (err) throw err;
+  
+	// eslint-disable-next-line no-console
+	console.log(`Nombre généré: ${res}`);
+});
+
 // // *** basic EventEmitter
 // const EventEmitter = require('events').EventEmitter;
 
@@ -116,15 +127,15 @@
 // // **** custom events (end)
 
 // *** communication entre objets
-const Gamer = require('./events/Gamer');
-const Game = require('./events/Game');
+// const Gamer = require('./events/Gamer');
+// const Game = require('./events/Game');
 
-const sam = new Gamer('Sam');
-const game = new Game(sam);
-game.on('created', () => {
-  console.log(`jeu créé`);
-});
-const teeworlds = { name: 'TeeWolrds', genre: 'Fast and fun' };
-sam.emit('chooseGame', teeworlds);
-sam.emit('startPlaying');
-sam.emit('goToBed');
+// const sam = new Gamer('Sam');
+// const game = new Game(sam);
+// game.on('created', () => {
+//   console.log(`jeu créé`);
+// });
+// const teeworlds = { name: 'TeeWolrds', genre: 'Fast and fun' };
+// sam.emit('chooseGame', teeworlds);
+// sam.emit('startPlaying');
+// sam.emit('goToBed');
