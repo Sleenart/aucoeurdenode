@@ -2,12 +2,22 @@
 const synchronous = require ('./asynchronous/synchronous');
 const asynchronous = require ('./asynchronous/asynchronous_1');
 
-asynchronous.getRandomNumber(10, (err, res) => {
+console.log('Index Avant');
+asynchronous.getRandomNumber('azerty', (err, res) => {
   if (err) throw err;
-
   // eslint-disable-next-line no-console
-  console.log(`Nombre généré: ${res}`);
+  console.log(`getRandomNumber Nombre généré: ${res}`);
 });
+
+console.log('Index Between');
+
+asynchronous.add(10, 5,(err, res) => {
+	if (err) throw err;
+	// eslint-disable-next-line no-console
+	console.log(`Add Nombre généré: ${res}`);
+  });
+
+console.log('Index Après');
 
 // // *** basic EventEmitter
 // const EventEmitter = require('events').EventEmitter;
