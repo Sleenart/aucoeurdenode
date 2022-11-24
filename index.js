@@ -3,10 +3,10 @@ import synchronous from "./asynchronous/synchronous";
 import { getRandomNumber } from "./asynchronous/asynchronous_1";
 
 getRandomNumber(10, (err, res) => {
-	if (err) throw err;
-  
-	// eslint-disable-next-line no-console
-	console.log(`Nombre généré: ${res}`);
+  if (err) throw err;
+
+  // eslint-disable-next-line no-console
+  console.log(`Nombre généré: ${res}`);
 });
 
 // // *** basic EventEmitter
