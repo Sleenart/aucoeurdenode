@@ -1,8 +1,8 @@
-// eslint-disable-next-line no-unused-vars
-import synchronous from "./asynchronous/synchronous";
-import { getRandomNumber } from "./asynchronous/asynchronous_1";
 
-getRandomNumber(10, (err, res) => {
+const synchronous = require ('./asynchronous/synchronous');
+const asynchronous = require ('./asynchronous/asynchronous_1');
+
+asynchronous.getRandomNumber(10, (err, res) => {
   if (err) throw err;
 
   // eslint-disable-next-line no-console
