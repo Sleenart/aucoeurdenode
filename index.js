@@ -1,21 +1,34 @@
 
+// eslint-disable-next-line no-unused-vars
 const synchronous = require ('./asynchronous/synchronous');
+// eslint-disable-next-line no-unused-vars
 const asynchronous = require ('./asynchronous/asynchronous_1');
+const promise = require ('./asynchronous/promises');
+
+promise.getRandomNumber('12')
+.then(result => {console.log(`Résultat: ${result}`)})
+.catch(erreur => {console.error(`${erreur}`)});
 
 console.log('Index Avant');
-asynchronous.getRandomNumber('azerty', (err, res) => {
-  if (err) throw err;
-  // eslint-disable-next-line no-console
-  console.log(`getRandomNumber Nombre généré: ${res}`);
-});
+// asynchronous.getRandomNumber(, (err, res) => {
+//   if (err) throw err;
+//   // eslint-disable-next-line no-console
+//   console.log(`getRandomNumber Nombre généré: ${res}`);
+// });
 
-console.log('Index Between');
 
-asynchronous.add(10, 5,(err, res) => {
-	if (err) throw err;
-	// eslint-disable-next-line no-console
-	console.log(`Add Nombre généré: ${res}`);
-  });
+// asynchronous.getRandomNumber('azerty', (err, res) => {
+// 	if (err) throw err;
+// 	// eslint-disable-next-line no-console
+// 	console.log(`getRandomNumber Nombre généré: ${res}`);
+//   });
+// console.log('Index Between');
+
+// asynchronous.add(10, 5,(err, res) => {
+// 	if (err) throw err;
+// 	// eslint-disable-next-line no-console
+// 	console.log(`Add Nombre généré: ${res}`);
+//   });
 
 console.log('Index Après');
 
